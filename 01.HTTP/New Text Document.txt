@@ -1,0 +1,12 @@
+http://restcountries.eu/rest/v2/name/Bulgaria
+
+- request line
+- headers
+- Body
+- Empty
+
+GET / rest/ v2/ name/ Bulgaria HTTP/1.1
+Host: restcountries.eu
+
+
+
