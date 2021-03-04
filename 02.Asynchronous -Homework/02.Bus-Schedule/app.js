@@ -8,7 +8,7 @@ function solve() {
     }
 
     async function depart() {
-        const url ="http://localhost:3030/jsonstore/bus/schedule/" + stop.next;
+        const url = "http://localhost:3030/jsonstore/bus/schedule/" + stop.next;
         const response = await fetch(url);
         const data = await response.json();
 
