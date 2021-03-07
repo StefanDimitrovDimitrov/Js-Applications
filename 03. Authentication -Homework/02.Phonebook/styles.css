@@ -20,9 +20,35 @@ button {
 }
 
 button:hover {
-  background-color: #45a049;
+  background-color: #e0d862;
 }
 
+li button {
+  background-color: #e0d862;
+  color: rgb(129, 4, 4);
+  padding: 14px 20px;
+  margin: 8px 4px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+li button:hover {
+  background-color: #c7daa6;
+}
+
+li {
+  background-color: #e0d862;
+  color: rgb(129, 4, 4);
+  padding: 3px 20px;
+  margin: 8px 4px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+li:hover {
+  background-color: #4CAF50;
+}
 body{
    font-family: 'Open Sans',serif;
 }
