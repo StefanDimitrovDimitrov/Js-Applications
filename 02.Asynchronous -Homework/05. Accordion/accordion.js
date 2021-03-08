@@ -72,30 +72,3 @@ function solution() {
 }
 
 solution()
-// function toggle() {
-//     let btn = document.getElementsByClassName('button')[0];
-//     let info = document.getElementById('extra');
-//     if(btn.textContent == "More"){
-//         info.style.display = "block";
-//         btn.innerText = "Less"; //btn.textContent is the same
-//     }else{
-//         btn.innerHTML = "More";
-//         info.style.display = 'none';
-//     }
-// }
-    // [
-    //     {"_id":"ee9823ab-c3e8-4a14-b998-8c22ec246bd3","title":"Scalable Vector Graphics"},
-    //     {"_id":"fdf00227-084f-48bc-a450-9242a0963f1f","title":"Open standard"},
-    //     {"_id":"8cd30492-3c55-4864-a1a2-7870e1694116","title":"Unix"},
-    //     {"_id":"9d776e93-bc6f-408c-9ab8-8aad7a5cffc4","title":"ALGOL"}
-    // ]
-    //}
-/* <div class="accordion">
-    <div class="head">
-        <span>Scalable Vector Graphics</span>
-        <button class="button" id="ee9823ab-c3e8-4a14-b998-8c22ec246bd3">More</button>
-    </div>
-    <div class="extra">
-        <p>Scalable Vector Graphics .....</p>
-    </div>
-</div> */

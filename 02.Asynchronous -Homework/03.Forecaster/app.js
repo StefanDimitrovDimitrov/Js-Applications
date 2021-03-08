@@ -79,8 +79,7 @@ async function getCode(cityName) {
         const data = await response.json();
     
         return data.find(x => x.name.toLowerCase() == cityName.toLowerCase()).code;
-    }
-
+}
 
 async function getCurrent(code) {
     const url = "http://localhost:3030/jsonstore/forecaster/today/" + code;
@@ -99,8 +98,6 @@ async function getUpcoming(code) {
 
     return data;
 }
-
-
 
 function newE(type, attributes, ...content) {
     const result = document.createElement(type);
