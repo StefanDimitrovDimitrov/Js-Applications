@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Biggest Catch</title>
-    <link rel="stylesheet" href="/static/styles.css">
+    <link rel="stylesheet" href="static/styles.css">
 </head>
 
 <body>
@@ -17,11 +17,15 @@
             <div id="guest">
                 <a href="login.html">Login</a>
             </div>
+            <div id="user">
+                <a href="login.html">Login</a>
+                <a id='logoutBtn'href="#">Logout</a>
+            </div>
         </nav>
     </header>
     <main>
         <fieldset id="main">
-            <legend>Catches</legend>
+           <legend>Catches</legend>
             <div id="catches">
                 <div class="catch">
                     <label>Angler</label>
@@ -71,25 +75,27 @@
         </fieldset>
         <aside>
             <button class="load">Load</button>
-            <fieldset id="addForm">
-                <legend>Add Catch</legend>
-                <label>Angler</label>
-                <input type="text" class="angler" />
-                <label>Weight</label>
-                <input type="number" class="weight" />
-                <label>Species</label>
-                <input type="text" class="species" />
-                <label>Location</label>
-                <input type="text" class="location" />
-                <label>Bait</label>
-                <input type="text" class="bait" />
-                <label>Capture Time</label>
-                <input type="number" class="captureTime" />
-                <button disabled class="add">Add</button>
-            </fieldset>
+            <form id='addForm1'>
+                <fieldset id="addForm">
+                    <legend>Add Catch</legend>
+                    <label>Angler</label>
+                    <input type="text" name='angler' required="required" class="angler" />
+                    <label>Weight</label>
+                    <input type="number" name='weight' required="required" class="weight" />
+                    <label>Species</label>
+                    <input type="text" name='species' required="required" class="species" />
+                    <label>Location</label>
+                    <input type="text" name='location' required="required" class="location" />
+                    <label>Bait</label>
+                    <input type="text" name='bait' required="required" class="bait" />
+                    <label>Capture Time</label>
+                    <input type="number" name='captureTime' required="required" class="captureTime" />
+                    <button disabled class="add">Add</button>
+                </fieldset>
+            </form>
         </aside>
     </main>
-    <script src="/app.js"></script>
+    <script src="./app.js"></script>
 </body>
 
 </html>

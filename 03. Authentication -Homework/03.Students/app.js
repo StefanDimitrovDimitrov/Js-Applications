@@ -46,40 +46,39 @@ async function createStudent(event) {
 
   validateData(student);
 
-  function validateData(student) {
+  async function validateData(student) {
     if (Object.values(student).includes("")) {
-      alert("You should fill in all fields.");
-      return;
+      return alert("You should fill in all fields.");
+
     } else if (
       !isNaN(Number(student.firstName) && typeof student.firstName != "string")
     ) {
-      alert("FirstName has to be a string.");
-      return;
+      return alert("FirstName has to be a string.");
     } else if (
       !isNaN(Number(student.lastName) && typeof student.lastName != "string")
     ) {
-      alert("LastName has to be a string.");
-      return;
+      return alert("LastName has to be a string.");
+      
     } else if (
       isNaN(
         Number(student.facultyNumber) &&
           typeof student.facultyNumber != "string"
       )
     ) {
-      alert("FacultyNumber has to be a number.");
-      return;
+      return alert("FacultyNumber has to be a number.");
+
     } else if (isNaN(student.grade)) {
-      alert("Grade has to be a score.");
-      return;
+      return alert("Grade has to be a score.");
     }
+  
+
+    await request("http://localhost:3030/jsonstore/collections/students", {
+      method: "post",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(student),
+    });
+
+    event.target.reset();
+    getAllStudents();
   }
-
-  await request("http://localhost:3030/jsonstore/collections/students", {
-    method: "post",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(student),
-  });
-
-  event.target.reset();
-  getAllStudents();
 }
