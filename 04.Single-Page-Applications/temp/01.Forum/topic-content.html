@@ -8,7 +8,6 @@
     <link href="https://fonts.googleapis.com/css?family=Parisienne&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/3cd69e2433.js" crossorigin="anonymous"></script>
     <title>SoftUni Forum</title>
-
 </head>
 
 <body>
@@ -24,7 +23,7 @@
         <nav>
             <ul>
                 <li>
-                    <a id='home' href="#">Home</a>
+                    <a href="#">Home</a>
                 </li>
             </ul>
         </nav>
@@ -32,7 +31,7 @@
 
     <div class="container">
         <!-- topic content  -->
-        <div id="comments"class="topic-content">
+        <div class="topic-content">
             <!-- topic-title  -->
             <div class="topic-title">
                 <div class="topic-name-wrapper">
@@ -85,11 +84,10 @@
                     <p><span>3</span> likes</p>
                 </div>
             </div>
-
             <div class="answer-comment">
                 <p><span>currentUser</span> comment:</p>
-                <div id="addComments"class="answer">
-                    <form id='post'>
+                <div class="answer">
+                    <form>
                         <textarea name="postText" id="comment" cols="30" rows="10"></textarea>
                         <div>
                             <label for="username">Username <span class="red">*</span></label>
@@ -99,6 +97,7 @@
                     </form>
                 </div>
             </div>
+
         </div>
     </div>
 
@@ -107,8 +106,6 @@
         <p>You can find the real SoftUni forum at this link:</p>
         <p><span><a href="https://softuni.bg/forum">https://softuni.bg/forum</a></span></p>
     </footer>
-
-    <script src='createPost.js'></script>
 </body>
 
 </html>
