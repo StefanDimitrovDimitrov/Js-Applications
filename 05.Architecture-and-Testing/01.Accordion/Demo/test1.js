@@ -58,9 +58,10 @@ describe('E2E tests', function() {
         expect(visible).to.be.false;
     });
     it("query selector chain'", async () =>{
-        await page.goto('http://127.0.0.1:5500/01.%20Accordion/')
+        await page.goto('http://127.0.0.1:5500/01.Accordion/index.html')
 
         const titles = await page.$$eval('.accordion .head span', (spans) => spans.map(s=> s.textContent))
+        console.log(titles)
         expect(titles).includes('Scalable Vector Graphics')
         expect(titles).includes('Open standard')
         expect(titles).includes('Unix')
