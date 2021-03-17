@@ -8,9 +8,8 @@ import {registerPage} from './views/register.js'
 import {loginPage} from './views/login.js'
 import {myPage} from './views/myFurniture.js'
 
-import * as api from './api/api.js'
+import * as api from './api/data.js'
 
-api.settings.host = 'http://localhost:3030';
 window.api = api
 
 page('/', dashboardPage);
