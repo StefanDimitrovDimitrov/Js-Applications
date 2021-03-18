@@ -1,24 +1,52 @@
-import page from '../node_modules/page/page.mjs'
+import page from "../node_modules/page/page.mjs";
 
-import {dashboardPage} from './views/dashboard.js'
-import {detailsPage} from './views/details.js'
-import {createPage} from './views/create.js'
-import {editPage} from './views/edit.js'
-import {registerPage} from './views/register.js'
-import {loginPage} from './views/login.js'
-import {myPage} from './views/myFurniture.js'
+import { render } from "../node_modules/lit-html/lit-html.js";
 
-import * as api from './api/data.js'
+import { dashboardPage } from "./views/dashboard.js";
+import { detailsPage } from "./views/details.js";
+import { createPage } from "./views/create.js";
+import { editPage } from "./views/edit.js";
+import { registerPage } from "./views/register.js";
+import { loginPage } from "./views/login.js";
+import { myPage } from "./views/myFurniture.js";
 
-window.api = api
+import { logout } from "./api/api.js";
 
-page('/', dashboardPage);
-page('/dashboard', dashboardPage);
-page('/details/:id', detailsPage);
-page('/create', createPage);
-page('/edit/:id',editPage);
-page('/register',registerPage);
-page('/login',loginPage);
-page('/my-furniture',myPage);
+const main = document.querySelector(".container");
 
-page.start()
+page("/", decorateContext, dashboardPage);
+page("/my-furniture", decorateContext, myPage);
+page("/details/:id", decorateContext, detailsPage);
+page("/create", decorateContext, createPage);
+page("/edit/:id", decorateContext, editPage);
+page("/register", decorateContext, registerPage);
+page("/login", decorateContext, loginPage);
+
+
+setUserNav();
+
+//start application
+page.start();
+
+function decorateContext(ctx, next) {
+  ctx.render = (content) => render(content, main);
+  ctx.setUserNav = setUserNav;
+  next();
+}
+
+function setUserNav() {
+  const userId = sessionStorage.getItem("userId");
+  if (userId != null) {
+    document.getElementById("user").style.display = "inline-block";
+    document.getElementById("guest").style.display = "none";
+  } else {
+    document.getElementById("user").style.display = "none";
+    document.getElementById("guest").style.display = "inline-block";
+  }
+}
+
+document.getElementById('logoutBtn').addEventListener('click', async()=>{
+    await logout();
+    setUserNav();
+    page.redirect('/')
+});

@@ -29,17 +29,17 @@ function getOptions(method = "get", body) {
         headers: {}
     };
     
-    const token = sessionStorage.getItem("authToken");
+    const token = sessionStorage.getItem('authToken');
     
     if (token != null) {
         options.headers['X-Authorization'] = token;
     }
 
     if (body){
-        options.headers["Content-Type"] = "application/json";
-        options.body = JSON.stringify(body);
+       options.headers['Content-Type'] = 'application/json';
+       options.body = JSON.stringify(body);
     } 
-    return options
+    return options;
 
 }
 
@@ -55,7 +55,7 @@ export async function put(url, data) {
   return await request(url, getOptions("put", data));
 }
 
-export async function del(url, data) {
+export async function del(url) {
   return await request(url, getOptions("delete"));
 }
 
@@ -77,17 +77,15 @@ export async function register(email, password){
     sessionStorage.setItem('email', result.email);
     sessionStorage.setItem('userId', result._id);
     
-
     return result;
 }
 
-export async function logout(email, password){
-    const result =  await get(settings.host + '/user/logout');
+export async function logout(){
+    const result =  await get(settings.host + '/users/logout');
 
     sessionStorage.removeItem('authToken');
     sessionStorage.removeItem('email');
     sessionStorage.removeItem('userId');
     
-
     return result;
 }
