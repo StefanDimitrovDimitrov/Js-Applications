@@ -1,3 +1,4 @@
+  
 .hero {
     font-size: 125%;
     margin-top: 128px;
@@ -72,4 +73,12 @@ h2 {
 .error {
     text-align: center;
     color: red
+}
+
+a.guest, a.user {
+    display: none;
+}
+
+#views {
+    display: none;
 }

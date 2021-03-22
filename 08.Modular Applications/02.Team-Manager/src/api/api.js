@@ -1,46 +1,45 @@
 export const settings = {
-host: ''
-}
+  host: ''
+};
 
 async function request(url, options) {
   try {
-    const response = await fetch(url, options);
+      const response = await fetch(url, options);
 
-    if (response.ok == false) {
-      const error = await response.json();
-      throw new Error(error.message);
-    }
+      if (response.ok == false) {
+          const error = await response.json();
+          throw new Error(error.message);
+      }
 
-    try {
-      const data = await response.json();
-      return data;
-    } catch (err) {
-        return response;
-    }
+      try {
+          const data = await response.json();
+          return data;
+      } catch (err) {
+          return response;
+      }
   } catch (err) {
-    //alert(err.message);
-    throw err;
+      //alert(err.message);
+      throw err;
   }
 }
 
-function getOptions(method = "get", body) {
-    const options = {
-        method,
-        headers: {}
-    };
-    
-    const token = sessionStorage.getItem('authToken');
-    
-    if (token != null) {
-        options.headers['X-Authorization'] = token;
-    }
+function getOptions(method = 'get', body) {
+  const options = {
+      method,
+      headers: {}
+  };
 
-    if (body){
-       options.headers['Content-Type'] = 'application/json';
-       options.body = JSON.stringify(body);
-    } 
-    return options;
+  const token = sessionStorage.getItem('authToken');
+  if (token != null) {
+      options.headers['X-Authorization'] = token;
+  }
 
+  if (body) {
+      options.headers['Content-Type'] = 'application/json';
+      options.body = JSON.stringify(body);
+  }
+
+  return options;
 }
 
 export async function get(url) {
@@ -48,47 +47,43 @@ export async function get(url) {
 }
 
 export async function post(url, data) {
-  return await request(url, getOptions("post", data));
+  return await request(url, getOptions('post', data));
 }
 
 export async function put(url, data) {
-  return await request(url, getOptions("put", data));
+  return await request(url, getOptions('put', data));
 }
 
 export async function del(url) {
-  return await request(url, getOptions("delete"));
+  return await request(url, getOptions('delete'));
 }
 
-export async function login(email, password){
-    const result =  await post(settings.host + '/users/login',{email, password});
+export async function login(email, password) {
+  const result = await post(settings.host + '/users/login', { email, password });
 
-    sessionStorage.setItem('authToken', result.accessToken);
-    sessionStorage.setItem('username', result.username);
-    sessionStorage.setItem('email', result.email);
-    sessionStorage.setItem('userId', result._id);
-    
+  sessionStorage.setItem('username', result.username);
+  sessionStorage.setItem('authToken', result.accessToken);
+  sessionStorage.setItem('userId', result._id);
 
-    return result;
+  return result;
 }
 
-export async function register(email,username, password){
-    const result =  await post(settings.host + '/users/register',{email, username, password});
+export async function register(email, username, password) {
+  const result = await post(settings.host + '/users/register', { email, username, password });
 
-    sessionStorage.setItem('authToken', result.accessToken);
-    sessionStorage.setItem('username', result.username);
-    sessionStorage.setItem('email', result.email);
-    sessionStorage.setItem('userId', result._id);
-    
-    return result;
+  sessionStorage.setItem('username', result.username);
+  sessionStorage.setItem('authToken', result.accessToken);
+  sessionStorage.setItem('userId', result._id);
+
+  return result;
 }
 
-export async function logout(){
-    const result =  await get(settings.host + '/users/logout');
+export async function logout() {
+  const result = await get(settings.host + '/users/logout');
 
-    sessionStorage.removeItem('authToken');
-    sessionStorage.removeItem('username');
-    sessionStorage.removeItem('email');
-    sessionStorage.removeItem('userId');
-    
-    return result;
+  sessionStorage.removeItem('username');
+  sessionStorage.removeItem('authToken');
+  sessionStorage.removeItem('userId');
+
+  return result;
 }

@@ -1,39 +1,34 @@
 import { html } from '../../node_modules/lit-html/lit-html.js';
-import {} from '../api/data.js';
+import { until } from '../../node_modules/lit-html/directives/until.js';
 
-const myTeamTeamplate =()=> html`
+import { getMyTeams } from '../api/data.js';
+import { loaderTemplate } from './common/loader.js';
+import { teamTemplate } from './common/team.js';
+
+
+const myTeamsTemplate = (teams) => html`
 <section id="my-teams">
-
-<article class="pad-med">
-    <h1>My Teams</h1>
-</article>
-
-<article class="layout narrow">
-    <div class="pad-med">
-        <p>You are not a member of any team yet.</p>
-        <p><a href="#">Browse all teams</a> to join one, or use the button bellow to cerate your own
-            team.</p>
-    </div>
-    <div class=""><a href="#" class="action cta">Create Team</a></div>
-</article>
-
-<article class="layout">
-    <img src="./assets/rocket.png" class="team-logo left-col">
-    <div class="tm-preview">
-        <h2>Team Rocket</h2>
-        <p>Gotta catch 'em all!</p>
-        <span class="details">3 Members</span>
-        <div><a href="#" class="action">See details</a></div>
-    </div>
-</article>
-
-</section>
-
-`
-
-export async function myPage(ctx){
-    const data = await getTeams();
-    ctx.render(myTeamTeamplate(data))
+    <article class="pad-med">
+        <h1>My Teams</h1>
+    </article>
+    <article class="layout narrow">
+        ${teams.length == 0 ? html`
+        <div class="pad-med">
+            <p>You are not a member of any team yet.</p>
+            <p><a href="/browse">Browse all teams</a> to join one, or use the button bellow to cerate your own
+                team.</p>
+        </div>` : ''}
+        <div class=""><a href="/create" class="action cta">Create Team</a></div>
+    </article>
+    ${teams.map(teamTemplate)}
+</section>`;
 
 
+export async function myTeamsPage(ctx) {
+    ctx.render(until(populateTemplate(), loaderTemplate()));
+}
+
+async function populateTemplate() {
+    const teams = await getMyTeams();
+    return myTeamsTemplate(teams);
 }
