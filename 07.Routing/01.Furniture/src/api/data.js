@@ -8,8 +8,12 @@ export const logout = api.logout;
 
 // Implement application- specific requests
 
-export async function getFurniture(){
-    return await api.get(host + '/data/catalog');
+export async function getFurniture(search){
+    if (search){
+        return await api.get(host + '/data/catalog?where=' +encodeURIComponent(`make LIKE "${search}"`));
+    }else{
+        return await api.get(host + '/data/catalog');
+    }
 }
 
 export async function getItemById(id){
