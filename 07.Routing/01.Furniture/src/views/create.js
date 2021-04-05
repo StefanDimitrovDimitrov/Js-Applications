@@ -76,7 +76,7 @@ export async function createPage(ctx){
         if (data.model.length < 4){
             return alert('The name of the model should be at least 4 symbols')
         }
-        if (data.year > 1950 && data.year < 2050){
+        if (data.year < 1950 && data.year > 2050){
             return alert('Year must be between 1950 and 2050')
         }
         if (data.description.length <= 10){
